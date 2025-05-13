@@ -1,7 +1,7 @@
 ### reframework based, no .pak files modified
 Move source content into `\reframework\autorun\` directory, run mhws and enable this mod.
 
-### depenendencies
+### dependencies
 This mod requiers [reframework-d2d](https://github.com/cursey/reframework-d2d) plugin to work.
 
 ### w.i.p preview
