@@ -1,1 +1,0 @@
--- app.Weapon -> app.cWeaponGunAmmo -> app.cWeaponGunAmmo.AMMO_TYPE
