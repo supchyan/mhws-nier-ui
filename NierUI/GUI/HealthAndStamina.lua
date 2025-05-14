@@ -1,5 +1,5 @@
 local Managers  = require("NierUI.Helpers.Managers")
-local Colors    = require("NierUI.Helpers.Colors")
+local Color     = require("NierUI.Helpers.Color")
 local Fonts     = require("NierUI.Helpers.Fonts")
 local Config    = require("NierUI.Config")
 
@@ -26,7 +26,7 @@ d2d.register(
 
         -- HUNTER STATUS INFO PROPERTIES
         local Net_SocialUserInfo    = nil
-        local StatusColor           = Colors.fDefault(1.5)
+        local StatusColor           = Color.fDefault(1.5)
         local StatusInfo            = "[OFFLINE]"
 
         if not Net_SocialUserInfo then -- LOBBY
@@ -44,8 +44,8 @@ d2d.register(
 
         if Net_SocialUserInfo then
             -- "HP: "..string.format("%.0f", HP).."", -- NetworkManager:get_field("_UserName") 
-            StatusInfo  = "["..Net_SocialUserInfo:get_PlName():upper()..", Lv"..tostring(Net_SocialUserInfo:get_HunterRank()).."]"
-            StatusColor = Colors.Default
+            StatusInfo  = "["..Net_SocialUserInfo:get_PlName()..", Lv"..tostring(Net_SocialUserInfo:get_HunterRank()).."]"
+            StatusColor = Color.Default
         end
 
         -- HEALTH PROPERTIES
@@ -65,7 +65,7 @@ d2d.register(
             PosY(2), -- Y 
             SE_BarSize.Y, -- W
             HP_BarSize.Y + SE_BarSize.Y + ST_BarSize.Y + 2 * ST_BarSize.Y, -- H 
-            Colors.dDefault
+            Color.dDefault
         )
 
         -- PLAYER STATUS DRAW CALLS
@@ -83,21 +83,21 @@ d2d.register(
             PosY(2), -- Y
             HpStOffset * MaxHP, -- W
             HP_BarSize.Y, -- H
-            Colors.Grey
+            Color.Grey
         )
         d2d.fill_rect(
             PosX(), -- X
             PosY(2), -- Y
             HpStOffset * RedHP, -- W
             HP_BarSize.Y, -- H
-            Colors.Orange
+            Color.Orange
         )
         d2d.fill_rect(
             PosX(), -- X
             PosY(2), -- Y 
             HpStOffset * HP, -- W
             HP_BarSize.Y, -- H
-            Colors.Default
+            Color.Default
         )
         
         -- SEPARATOR (HP RELATED) DRAW CALLS
@@ -106,28 +106,28 @@ d2d.register(
             PosY(3.5), -- Y 
             _S * 5, -- W
             SE_BarSize.Y, -- H
-            Colors.dDefault
+            Color.dDefault
         )
         d2d.fill_rect(
             _S * 10 + PosX(), -- X
             PosY(3.5), -- Y
             HpStOffset * MaxHP * .34 - _S * 10, -- W
             SE_BarSize.Y, -- H
-            Colors.dDefault
+            Color.dDefault
         )
         d2d.fill_rect(
             PosX() + HpStOffset * MaxHP * .34 + _S * 5, -- X 
             PosY(3.5), -- Y 
             HpStOffset * MaxHP * .66 - _S * 15, -- W
             SE_BarSize.Y, -- H
-            Colors.dDefault
+            Color.dDefault
         )
         d2d.fill_rect(
             PosX() + HpStOffset * MaxHP - _S * 5, -- X 
             PosY(3.5), -- Y 
             _S * 5, -- W
             SE_BarSize.Y, -- H
-            Colors.dDefault
+            Color.dDefault
         )
 
         -- STAMINA DRAW CALLS
@@ -136,21 +136,21 @@ d2d.register(
             PosY(4.25), -- Y 
             HpStOffset * MaxST, -- W
             ST_BarSize.Y, 
-            Colors.Grey
+            Color.Grey
         )
         d2d.fill_rect(
             PosX(), -- X 
             PosY(4.25), -- Y 
             HpStOffset * ST, -- W
             ST_BarSize.Y, -- H
-            Colors.Default
+            Color.Default
         )
         d2d.text(
             Fonts.Default, 
             ":"..string.format("%.2f", ST)..":", -- T
             PosX(), -- X
             PosY(5.3), -- Y 
-            Colors.dDefault
+            Color.dDefault
         )
     end
 )

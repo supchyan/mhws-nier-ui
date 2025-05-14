@@ -1,5 +1,5 @@
 local Managers  = require("NierUI.Helpers.Managers")
-local Colors    = require("NierUI.Helpers.Colors")
+local Color     = require("NierUI.Helpers.Color")
 local Fonts     = require("NierUI.Helpers.Fonts")
 local Config    = require("NierUI.Config")
 
@@ -20,7 +20,7 @@ d2d.register(
             "TEST", -- T
             20, -- X
             20, -- Y 
-            Colors.Default
+            Color.Default
         )
     end
 )

@@ -1,7 +1,6 @@
 local Managers  = require("NierUI.Helpers.Managers")
-local Colors    = require("NierUI.Helpers.Colors")
+local Color     = require("NierUI.Helpers.Color")
 local Fonts     = require("NierUI.Helpers.Fonts")
-local Weapons   = require("NierUI.Helpers.Weapons")
 local Kireaji   = require("NierUI.Helpers.Kireaji")
 local Config    = require("NierUI.Config")
 
@@ -31,8 +30,8 @@ d2d.register(
         local InnerR = _S * 6
 
         -- WP PROPERTIES
-        local _Weapon       = HunterCharacter:get_Weapon()
-        local WP_Type       = _Weapon:get_WpType()
+        local Weapon        = HunterCharacter:get_Weapon()
+        local WP_Type       = Weapon:get_WpType()
 
         -- app.cHunterWeaponHanldingBase
         local WeaponHBase   = HunterCharacter:get_WeaponHandling()
@@ -44,35 +43,35 @@ d2d.register(
         local KI_Type       = _Kireaji:get_CurrentType()
         local KI_MaxType    = _Kireaji:get_MaxKireajiType()
         local KI_Offset     = _Kireaji:get_CurrentRate()
-        local KI_BgColor    = Colors.White
-        local KI_Color      = Colors.White
+        local KI_BgColor    = Color.White
+        local KI_Color      = Color.White
 
         -- KIREAJI ENUM INFO
         -- WHITE IS '5'
         -- GREEN IS '3'
         if KI_Type == Kireaji.White then
-            KI_BgColor  = Colors.Blue
-            KI_Color    = Colors.White
+            KI_BgColor  = Color.Blue
+            KI_Color    = Color.White
         end
         if KI_Type == Kireaji.Blue then
-            KI_BgColor  = Colors.Green
-            KI_Color    = Colors.Blue
+            KI_BgColor  = Color.Green
+            KI_Color    = Color.Blue
         end
         if KI_Type == Kireaji.Green then
-            KI_BgColor  = Colors.Yellow
-            KI_Color    = Colors.Green
+            KI_BgColor  = Color.Yellow
+            KI_Color    = Color.Green
         end
         if KI_Type == Kireaji.Yellow then
-            KI_BgColor  = Colors.Orange
-            KI_Color    = Colors.Yellow
+            KI_BgColor  = Color.Orange
+            KI_Color    = Color.Yellow
         end
         if KI_Type == Kireaji.Orange then
-            KI_BgColor  = Colors.Red
-            KI_Color    = Colors.Orange
+            KI_BgColor  = Color.Red
+            KI_Color    = Color.Orange
         end
         if KI_Type == Kireaji.Red then
-            KI_BgColor  = Colors.Grey
-            KI_Color    = Colors.Red
+            KI_BgColor  = Color.Grey
+            KI_Color    = Color.Red
         end
 
         if (_Kireaji:get_IsMaxKireaji() and KI_Type == Kireaji.White) or WeaponHBase:get_IsGunner() then
@@ -84,17 +83,17 @@ d2d.register(
             d2d.fill_circle(
                 PosX(), PosY(), 
                 OuterR, 
-                Colors.White
+                Color.White
             )
             d2d.fill_circle(
                 PosX() - Emil_Offset * _S * 5, PosY() - Emil_Offset * _S * .5, 
                 InnerR * (1. - Emil_Offset * .5), 
-                Colors.Grey
+                Color.Grey
             )
             d2d.fill_circle(
                 PosX() + Emil_Offset * _S * 5, PosY() - Emil_Offset * _S * .5, 
                 InnerR * (1. - Emil_Offset * .5), 
-                Colors.Grey
+                Color.Grey
             )
         else
             -- RESET EMIL ANIM. INFO
