@@ -1,7 +1,7 @@
 > [!NOTE]
 > You need to install [reframework](https://github.com/praydog/REFramework) first.
 
-### Install
+### Mod Install
 Move source content into MHWs root directory, run the game and enjoy.
 
 ### Special Thanks
