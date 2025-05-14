@@ -1,15 +1,40 @@
-local Manager  = require("NierUI.Helpers.Manager")
+local Manager   = require("NierUI.Helpers.Manager")
 local Color     = require("NierUI.Helpers.Color")
 local Font      = require("NierUI.Helpers.Font")
 local Config    = require("NierUI.Config")
 
-local DefaultPos    = Config.Party_Pos
-local _S            = Config.UI_Scale
+local DefaultPos = { 
+    X = 97 + Config.QuestMems_PosOffset.X, 
+    Y = 214 + Config.QuestMems_PosOffset.Y
+}
+local _S = Config.UI_Scale
+local useAlphaTrick = true
+
+local Clock = {
+    Alpha   = os.clock()
+}
+
+-- FLOATING ALPHA 0xF -> 0x0
+function AlphaTrick()
+    if not useAlphaTrick then return 0x00000000 end
+    local _val = math.floor(math.abs(math.cos(4. * (os.clock() - Clock.Alpha))) * 255)
+    useAlphaTrick = _val > 32
+    return "0x"..string.format("%x", _val).."000000"
+end
+function ResetAlphaTrick()
+    Clock.Alpha     = os.clock()
+    useAlphaTrick   = true
+end
 
 d2d.register(
     function() end,
     function()
-        if Manager.GUI:isMouseCursorAvailable() then return end
+        local  HunterCharacter = Manager.Player:call("getMasterPlayerInfo"):get_field("<Character>k__BackingField")
+        if not HunterCharacter then return end
+        if Manager.GUI:isMouseCursorAvailable() then 
+            ResetAlphaTrick()
+            return 
+        end
 
         function PosX()
             return _S * DefaultPos.X
@@ -54,7 +79,7 @@ d2d.register(
                     PosY(0) + IndexOffset(index), -- Y
                     _S * 3, -- W
                     _S * 51, -- H
-                    Color.dDefault
+                    Color.dDefault - AlphaTrick()
                 )
 
                 d2d.text(
@@ -62,28 +87,28 @@ d2d.register(
                     i_PlayerName, -- T
                     PosX(), -- X
                     PosY(0) + IndexOffset(index), -- Y 
-                    Color.Default
+                    Color.Default - AlphaTrick()
                 )
                 d2d.fill_rect(
                     PosX(), -- X
                     PosY(1.1) + IndexOffset(index), -- Y
                     HP_BarBox.W, -- W
                     HP_BarBox.H, -- H
-                    Color.Grey
+                    Color.Grey - AlphaTrick()
                 )
                 d2d.fill_rect(
                     PosX(), -- X
                     PosY(1.1) + IndexOffset(index), -- Y
                     HP_BarBox.W * (i_RedHP / i_MaxHP), -- W
                     HP_BarBox.H, -- H
-                    Color.Orange
+                    Color.Orange - AlphaTrick()
                 )
                 d2d.fill_rect(
                     PosX(), -- X
                     PosY(1.1) + IndexOffset(index), -- Y 
                     HP_BarBox.W * (i_HP / i_MaxHP), -- W
                     HP_BarBox.H, -- H
-                    Color.Default
+                    Color.Default - AlphaTrick()
                 )
 
                 -- NUMBERS HP INFO
@@ -92,7 +117,7 @@ d2d.register(
                     ":"..string.format("%.2f", i_HP)..":", -- T
                     PosX(), -- X
                     PosY(1.8) + IndexOffset(index), -- Y 
-                    Color.dDefault
+                    Color.dDefault - AlphaTrick()
                 )
             end 
         end

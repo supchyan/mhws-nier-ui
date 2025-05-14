@@ -1,11 +1,12 @@
 local Config = {}
 
-Config.UI_Scale = 1. -- Offset to make whole UI bigger
+Config.UI_Scale = 1. -- OFFSET TO MAKE THE WHOLE [UI] BIGGER (AFFECT XY_COODS.)
 
-Config.HpSt_Pos         = { X = 97, Y = 55  }
-Config.Kireaji_Pos      = { X = 70, Y = 96  }
-Config.Party_Pos        = { X = 97, Y = 214 }
-Config.Minimap_Pos      = { X = 97, Y = 721 }
-Config.WeaponSelect_Pos = { X = 95, Y = 576 }
+Config.HpSt_PosOffset         = { X = 0, Y = 0 } -- HEALTH AND STAMINA BARS POSITION OFFSET
+Config.Kireaji_PosOffset      = { X = 0, Y = 0 } -- SHARPNESS CIRCLE POSITION OFFSET
+Config.QuestMems_PosOffset    = { X = 0, Y = 0 } -- QUEST MEMBERS POSITION OFFSET
+Config.Minimap_PosOffset      = { X = 0, Y = 0 } -- MINIMAP POSITION OFFSET
+Config.WeaponPouch_PosOffset  = { X = 0, Y = 0 } -- WEAPON POUCH POSITION OFFSET
+Config.QuestInfo_PosOffset    = { X = 0, Y = 0 } -- QUEST INFO POSITION OFFSET
 
 return Config
