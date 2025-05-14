@@ -1,6 +1,6 @@
 local Managers  = require("NierUI.Helpers.Managers")
 local Color     = require("NierUI.Helpers.Color")
-local Fonts     = require("NierUI.Helpers.Fonts")
+local Font      = require("NierUI.Helpers.Font")
 local Config    = require("NierUI.Config")
 
 local DefaultPos    = Config.HpSt_Pos
@@ -70,7 +70,7 @@ d2d.register(
 
         -- PLAYER STATUS DRAW CALLS
         d2d.text(
-            Fonts.Large, 
+            Font.Large, 
             StatusInfo, -- T 
             PosX(), -- X
             PosY(0), -- Y 
@@ -146,7 +146,7 @@ d2d.register(
             Color.Default
         )
         d2d.text(
-            Fonts.Default, 
+            Font.Default, 
             ":"..string.format("%.2f", ST)..":", -- T
             PosX(), -- X
             PosY(5.3), -- Y 

@@ -1,6 +1,6 @@
 local Managers  = require("NierUI.Helpers.Managers")
 local Color     = require("NierUI.Helpers.Color")
-local Fonts     = require("NierUI.Helpers.Fonts")
+local Font      = require("NierUI.Helpers.Font")
 local Config    = require("NierUI.Config")
 
 local DefaultPos    = Config.Minimap_Pos
@@ -54,14 +54,14 @@ d2d.register(
 
         -- NO MINIMAP ALERT + SHADOW
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "NO MINIMAP", -- T
             NoMinimapMessagePos.X - 1, -- X
             NoMinimapMessagePos.Y + 1, -- Y
             Color.dGrey
         )
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "NO MINIMAP", -- T
             NoMinimapMessagePos.X, -- X
             NoMinimapMessagePos.Y, -- Y
@@ -70,14 +70,14 @@ d2d.register(
 
         -- WIP ALERT + SHADOW
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "[0x0 AREA]", -- T
             WipMessagePos.X - 1, -- X
             WipMessagePos.Y + 1, -- Y
             Color.fdGrey(0.8)
         )
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "[0x0 AREA]", -- T
             WipMessagePos.X, -- X
             WipMessagePos.Y, -- Y

@@ -1,6 +1,6 @@
 local Managers  = require("NierUI.Helpers.Managers")
 local Color     = require("NierUI.Helpers.Color")
-local Fonts     = require("NierUI.Helpers.Fonts")
+local Font      = require("NierUI.Helpers.Font")
 local Config    = require("NierUI.Config")
 
 -- app.EnemyCharacter:get_field("_MiniComponentHolder"):get_field("_DamageCounter") => app.mcEnemyDamageCounter
@@ -16,7 +16,7 @@ d2d.register(
         -- if not HunterCharacter then return end
 
         d2d.text(
-            Fonts.Default, 
+            Font.Default, 
             "TEST", -- T
             20, -- X
             20, -- Y 

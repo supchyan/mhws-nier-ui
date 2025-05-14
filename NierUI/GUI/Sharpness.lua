@@ -1,6 +1,6 @@
 local Managers  = require("NierUI.Helpers.Managers")
 local Color     = require("NierUI.Helpers.Color")
-local Fonts     = require("NierUI.Helpers.Fonts")
+local Font      = require("NierUI.Helpers.Font")
 local Kireaji   = require("NierUI.Helpers.Kireaji")
 local Config    = require("NierUI.Config")
 

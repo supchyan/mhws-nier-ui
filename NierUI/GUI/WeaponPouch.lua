@@ -1,7 +1,7 @@
 local Managers  = require("NierUI.Helpers.Managers")
 local Color     = require("NierUI.Helpers.Color")
 local Weapon    = require("NierUI.Helpers.Weapon")
-local Fonts     = require("NierUI.Helpers.Fonts")
+local Font      = require("NierUI.Helpers.Font")
 local Kireaji   = require("NierUI.Helpers.Kireaji")
 local Config    = require("NierUI.Config")
 
@@ -120,7 +120,7 @@ d2d.register(
             Color.Grey
         )
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "IN POUCH: "..RWP_TypeName, -- T
             RWP_TypeNamePos.X, -- X
             RWP_TypeNamePos.Y, -- Y 
@@ -136,28 +136,28 @@ d2d.register(
             Color.Default
         )
         d2d.text( -- TEXT SHADOW
-            Fonts.Large,
+            Font.Large,
             "SELECTED: "..SWP_TypeName, -- T
             SWP_TypeNamePos.X - 1, -- X
             SWP_TypeNamePos.Y + 1, -- Y 
             Color.dGrey
         )
         d2d.text(
-            Fonts.Large,
+            Font.Large,
             "SELECTED: "..SWP_TypeName, -- T
             SWP_TypeNamePos.X, -- X
             SWP_TypeNamePos.Y, -- Y 
             Color.Grey
         )
         d2d.text( -- TEXT SHADOW
-            Fonts.Default,
+            Font.Default,
             SWP_Desc, -- T
             SWP_DescPos.X - 1, -- X
             SWP_DescPos.Y + 1, -- Y 
             Color.dGrey
         )
         d2d.text(
-            Fonts.Default,
+            Font.Default,
             SWP_Desc, -- T
             SWP_DescPos.X, -- X
             SWP_DescPos.Y, -- Y 

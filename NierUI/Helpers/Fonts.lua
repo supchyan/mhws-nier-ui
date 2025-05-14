@@ -1,5 +1,5 @@
 local Config    = require("NierUI.Config")
-local Fonts     = {}
+local Font     = {}
 
 local FontDef = {
     Size    = Config.UI_Scale * 14,
@@ -11,10 +11,10 @@ local FontDef = {
 
 d2d.register(
     function() 
-        Fonts.Default   = d2d.Font.new(FontDef.Name, FontDef.Size, FontDef.Bold, FontDef.Italic)
-        Fonts.Large     = d2d.Font.new(FontDef.Name, FontDef.Size_L, FontDef.Bold, FontDef.Italic)
+        Font.Default   = d2d.Font.new(FontDef.Name, FontDef.Size, FontDef.Bold, FontDef.Italic)
+        Font.Large     = d2d.Font.new(FontDef.Name, FontDef.Size_L, FontDef.Bold, FontDef.Italic)
     end,
     function() end
 )
 
-return Fonts
+return Font
