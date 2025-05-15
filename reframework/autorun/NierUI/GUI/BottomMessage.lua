@@ -3,6 +3,7 @@ local Color     = require("NierUI.Helpers.Color")
 local Font      = require("NierUI.Helpers.Font")
 local Config    = require("NierUI.Config")
 
+-- DPS METER
 -- app.EnemyCharacter:get_field("_MiniComponentHolder"):get_field("_DamageCounter") => app.mcEnemyDamageCounter
 
 local _S = Config.UI_Scale
@@ -15,11 +16,22 @@ d2d.register(
         if Manager.GUI:isMouseCursorAvailable() then return end
 
         local ScreenWidth, ScreenHeight = d2d.surface_size()
-
-        local DebugMessage = "[WORK IN PROGRESS]"
-        local MessageWidth, MessageHeight = Font.Default:measure(DebugMessage)
-
+        local Message = "[Nier UI ver. 0.1]"
         local Margin = _S * 10
+
+        local cQuestDirector   = Manager.Mission:get_QuestDirector()
+        local cActiveQuestData = cQuestDirector:get_QuestData()
+
+        -- PREVENT CALLS, IF NOT DURING THE QUEST
+        if cActiveQuestData and Config.DrawQuestElapsedTime then 
+            local QuestRemainTime   = cQuestDirector:get_QuestRemainTime()
+            local QuestMaxTime      = cActiveQuestData:getTimeLimit()
+            local QuestTime         = "[Time Elapsed: "..string.format("%.3f", QuestMaxTime - QuestRemainTime / 60).." min]"
+
+            Message = QuestTime
+        end
+
+        local MessageWidth, MessageHeight = Font.Large:measure(Message)
 
         local Box = {
             W = MessageWidth + 2 * Margin,
@@ -38,8 +50,8 @@ d2d.register(
             Color.dGrey
         )
         d2d.text(
-            Font.Default, 
-            DebugMessage,
+            Font.Large, 
+            Message,
             BoxPos.X + Margin,
             BoxPos.Y + Margin,
             Color.Default

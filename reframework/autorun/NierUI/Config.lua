@@ -9,4 +9,6 @@ Config.Minimap_PosOffset      = { X = 0, Y = 0 } -- MINIMAP POSITION OFFSET
 Config.WeaponPouch_PosOffset  = { X = 0, Y = 0 } -- WEAPON POUCH POSITION OFFSET
 Config.QuestInfo_PosOffset    = { X = 0, Y = 0 } -- QUEST INFO POSITION OFFSET
 
+Config.DrawQuestElapsedTime   = true
+
 return Config

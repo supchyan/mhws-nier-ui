@@ -1,8 +1,9 @@
 local Manager   = require("NierUI.Helpers.Manager")
 local Color     = require("NierUI.Helpers.Color")
 local Font      = require("NierUI.Helpers.Font")
-local Config    = require("NierUI.Config")
 local Weapon    = require("NierUI.Helpers.Weapon")
+local Guid      = require("NierUI.Helpers.Guid")
+local Config    = require("NierUI.Config")
 
 local DefaultPos = { 
     X = 60 + Config.WeaponPouch_PosOffset.X, 
@@ -59,38 +60,39 @@ d2d.register(
         local cHunterAttackPower    = cHunterStatus:get_AttackPower()
         local cHunterCritical       = cHunterStatus:get_CriticalRate()
 
+        -- app.cHunterWeaponHandlingBase => get_ReserveShellWeaponAttrType()
+
         -- SELECTED ONLY
-        local WP_ATTR = cHunterAttackPower:get_AttibuteType()
 
         -- SELECTED WP DATA
-        local S_Weapon      = HunterCharacter:get_Weapon()
-        local SWP_Data      = S_Weapon:get_WpData()                         -- UNUSED --
-        local SWP_Type      = S_Weapon:get_WpType()
-        local SWP_ID        = cHunterCreateInfo:get_WpID()
-        local SWP_TypeName  = Weapon.TypeName[SWP_Type + 1]
-        local SWP_AttrName  = Weapon.AttrName[WP_ATTR  + 1]
-        local SWP_Title     = "SELECTED: "..SWP_TypeName
-        local SWP_Desc      = "["..tostring(SWP_ID).."]".." [Attribute: "..tostring(SWP_AttrName).."]"
+        local SWP_Handle    = HunterCharacter:get_WeaponHandling()
+        local SWP_TYPE      = HunterCharacter:get_WeaponType()
+        local SWP_ID        = HunterCharacter:get_WeaponID()
+        local SWP_ATTR      = cHunterAttackPower:get_AttibuteType()
+        local SWP_GUID      = Guid.Weapon.Name(nil, SWP_TYPE, SWP_ID)
+        local SWP_TypeName  = Weapon.TypeName[SWP_TYPE + 1]
+        local SWP_AttrName  = Weapon.AttrName[SWP_ATTR + 1]
+        local SWP_Title     = Guid.ToString(nil, SWP_GUID) -- пусто
+        local SWP_Desc      = tostring(SWP_TypeName).." ["..tostring(SWP_AttrName).."]"
 
         local SWP_TitleWidth, SWP_TitleHeight   = Font.Default:measure(SWP_Title)
         local SWP_DescWidth, SWP_DescHeight     = Font.Default:measure(SWP_Desc)
 
-        -- REVERSE WP DATA
-        local R_Weapon      = HunterCharacter:get_ReserveWeapon()
-        local RWP_Data      = R_Weapon:get_WpData()                         -- UNUSED --
-        local RWP_Type      = R_Weapon:get_WpType()                         -- UNUSED --
-        local RWP_ID        = cHunterCreateInfo:get_ReserveWpID()           
-        local RWP_TypeName  = Weapon.TypeName[R_Weapon:get_WpType() + 1]    
-        local SWP_AttrName  = nil                                           -- UNUSED --
-        local RWP_Title     = "IN POUCH: "..RWP_TypeName
-        local RWP_Desc      = "["..tostring(RWP_ID).."]"                    -- UNUSED --
+        -- RESERVE WP DATA
+        local RWP_Handle    = HunterCharacter:get_ReserveWeaponHandling()
+        local RWP_TYPE      = HunterCharacter:get_ReserveWeaponType()
+        local RWP_ID        = HunterCharacter:get_ReserveWeaponID()       
+        local RWP_ATTR      = nil                                           -- UNUSED --
+        local RWP_GUID      = Guid.Weapon.Name(nil, RWP_TYPE, RWP_ID)    
+        local RWP_TypeName  = Weapon.TypeName[RWP_TYPE + 1]    
+        local RWP_AttrName  = nil                                           -- UNUSED --
+        local RWP_Title     = Guid.ToString(nil, RWP_GUID)
+        local RWP_Desc      = "["..tostring(RWP_TypeName).."]"              -- UNUSED --
         
         local RWP_TitleWidth, RWP_TitleHeight   = Font.Default:measure(RWP_Title)
         local RWP_DescWidth, RWP_DescHeight     = Font.Default:measure(RWP_Desc)
 
-        
-
-        -- SELECTED WEAPON DRAW PROP.
+        -- SELECTED WEAPON DRAW MATH
         local SWP_BarMargin = _S * 2
         local SWP_BarBox = { 
             W = _S * 266, 
@@ -113,7 +115,7 @@ d2d.register(
         local SWP_TypeNamePos   = SWP_TypeNameDefPos
         local SWP_DescPos       = SWP_DescDefPos
         
-        -- REVERSE WEAPON DRAW PROP.
+        -- RESERVE WEAPON DRAW MATH
         local RWP_BarBox = { 
             W = _S * 266, 
             H = 3 * RWP_TitleHeight
@@ -142,7 +144,7 @@ d2d.register(
             Clock.WpSwitch = os.clock()
         end
 
-        -- REVERSE WEAPON DRAW CALLS
+        -- RESERVE WEAPON DRAW CALLS
         d2d.fill_rect(
             RWP_BarPos.X, -- X
             RWP_BarPos.Y, -- Y

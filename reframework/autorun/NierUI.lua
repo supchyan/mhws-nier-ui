@@ -13,8 +13,5 @@ require("NierUI.GUI.Minimap")
 -- DRAW WEAPON POUCH UI
 require("NierUI.GUI.WeaponPouch")
 
--- DRAW QUEST INFO UI
-require("NierUI.GUI.QuestInfo")
-
 -- DRAW BOTTOM MESSAGE UI
 require("NierUI.GUI.BottomMessage")
